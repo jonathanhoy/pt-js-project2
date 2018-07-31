@@ -33,7 +33,7 @@ $(function (){
 	let shuffledCardArray = shuffle(cardArray);
 	let shuffledCardList = '';
 	for (let i = 0; i < shuffledCardArray.length; i++) {
-		shuffledCardList += `<li>${shuffledCardArray[i]}</li>`
+		shuffledCardList += `<li class="${shuffledCardArray[i]}"></li>`;
 	}
 
 	$('.cards').html(shuffledCardList);
