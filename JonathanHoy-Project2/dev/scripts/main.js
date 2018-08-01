@@ -33,18 +33,26 @@ $(function (){
 	let shuffledCardArray = shuffle(cardArray);
 	let shuffledCardList = '';
 	for (let i = 0; i < shuffledCardArray.length; i++) {
-		shuffledCardList += `<li class="card"><div class="card"><div class="front">I'm the front</div><div class="back"><img src="../dev/assets/${shuffledCardArray[i]}.png" alt="A cute picture of ${shuffledCardArray[i]}."></div></div></li>`;
+		shuffledCardList += `<li class="card"><div class="card"><div class="front"></div><div class="back"><img src="../dev/assets/${shuffledCardArray[i]}.png" alt="A cute picture of ${shuffledCardArray[i]}."></div></div></li>`;
 	}
 
 	$('.cards').html(shuffledCardList);
 
 
 	$('.front').on('click', function (){
-		$(this).toggleClass('facing');
-		$('.back').toggleClass('facing');
+		$(this).toggleClass('rotate');
+		$(this).next().toggleClass('rotate');
 	});
 
-	
+	$('.back').on('click', function (){
+		$(this).toggleClass('rotate');
+		$(this).prev().toggleClass('rotate');
+	});
+
+	// if statement to determine when two cards are flipped, can't flip any more cards?
+
+	// if two flipped cards match, add class 'completed' with some CSS and won't be flipped anymore?
+
 
 
 });
