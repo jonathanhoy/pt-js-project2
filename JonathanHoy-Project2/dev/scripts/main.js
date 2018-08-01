@@ -7,7 +7,7 @@
 
 // Array of "cards" is shuffled and then insterted into the DOM. Using CSS to create flippable cards, user clicks on two cards to reveal image.
 
-const shuffle = function(array) {
+const shuffle = (array) => {
   var currentIndex = array.length, temporaryValue, randomIndex;
 
   // While there remain elements to shuffle...
@@ -33,8 +33,29 @@ $(function (){
 	let shuffledCardArray = shuffle(cardArray);
 	let shuffledCardList = '';
 	for (let i = 0; i < shuffledCardArray.length; i++) {
-		shuffledCardList += `<li class="${shuffledCardArray[i]}"></li>`;
+		shuffledCardList += `<li class="card"><div class="card"><div class="front">I'm the front</div><div class="back"><img src="../dev/assets/${shuffledCardArray[i]}.png" alt="A cute picture of ${shuffledCardArray[i]}."></div></div></li>`;
 	}
 
 	$('.cards').html(shuffledCardList);
+
+
+	$('.front').on('click', function (){
+		$(this).toggleClass('facing');
+		$('.back').toggleClass('facing');
+	});
+
+	
+
+
 });
+
+
+
+
+
+
+
+
+
+
+

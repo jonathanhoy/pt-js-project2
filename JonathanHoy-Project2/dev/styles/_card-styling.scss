@@ -3,36 +3,46 @@ ul {
 	padding: 0;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr 1fr;
-	grid-template-rows: 300px 300px;
+	grid-template-rows: auto;
 	justify-items: center;
 	align-items: center;
 }
 
-li {
+.card, div.front, div.back {
 	width: 100%;
 	height: 300px;
-}
-
-.bulbasaur {
-	background-image: url("../../dev/assets/bulbasaur.png");
 	background-repeat: no-repeat;
 	background-position: center;
 }
 
-.charmander {
-	background-image: url("../../dev/assets/charmander.png");
-	background-repeat: no-repeat;
-	background-position: center;
+.card {
+	position: relative;
 }
 
-.squirtle {
-	background-image: url("../../dev/assets/squirtle.png");
-	background-repeat: no-repeat;
-	background-position: center;
+.front, .back {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	backface-visibility: hidden;
+	transition: transform 0.5s;
 }
 
-.pikachu {
-	background-image: url("../../dev/assets/pikachu.png");
-	background-repeat: no-repeat;
-	background-position: center;
+.front {
+	background-color: cornflowerblue;
 }
+
+.back {
+	background-color: salmon;
+	transform: rotateY(180deg);
+}
+
+.front.facing {
+  transform: rotateY(-180deg);
+}
+
+.back.facing {
+  transform: rotateY(0deg);
+}
+
