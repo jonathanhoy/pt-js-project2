@@ -24,7 +24,7 @@ const shuffle = (array) => {
   }
 
   return array;
-}
+};
 
 $(function (){
 	

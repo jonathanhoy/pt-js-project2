@@ -180,10 +180,7 @@ ul {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(2, 256px);
-  grid-gap: 10px;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center; }
+  grid-gap: 10px; }
 
 img {
   max-width: 75%; }
@@ -214,6 +211,20 @@ img {
 .front {
   background-color: cornflowerblue; }
 
+.frontRed {
+  background: red;
+  z-index: 10;
+  height: 100%;
+  width: 100%;
+  margin: 0 auto; }
+
+.frontWhite {
+  background: grey;
+  z-index: 10;
+  height: 100%;
+  width: 100%;
+  margin: 0 auto; }
+
 .back {
   background-color: salmon;
   -webkit-transform: rotateY(180deg);
@@ -233,7 +244,7 @@ img {
           transform: rotateY(0deg); }
 
 .wrapper {
-  max-width: 1200px;
+  max-width: 1054px;
   width: 95%;
   margin: 0 auto; }
 
