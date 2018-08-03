@@ -209,7 +209,7 @@ img {
   transition: transform 0.5s, -webkit-transform 0.5s; }
 
 .front {
-  background-color: cornflowerblue; }
+  background-color: lightgrey; }
 
 .frontRed {
   background: red;
@@ -226,7 +226,6 @@ img {
   margin: 0 auto; }
 
 .back {
-  background-color: salmon;
   -webkit-transform: rotateY(180deg);
           transform: rotateY(180deg);
   display: grid;
@@ -235,13 +234,25 @@ img {
       -ms-flex-align: center;
           align-items: center; }
 
-.front.rotate {
+.front.flip {
   -webkit-transform: rotateY(-180deg);
           transform: rotateY(-180deg); }
 
-.back.rotate {
+.back.flip {
   -webkit-transform: rotateY(0deg);
           transform: rotateY(0deg); }
+
+.bulbasaur {
+  background-color: #90EE90; }
+
+.charmander {
+  background-color: #FF7F50; }
+
+.squirtle {
+  background-color: #6495ED; }
+
+.pikachu {
+  background-color: #F3F781; }
 
 .wrapper {
   max-width: 1054px;

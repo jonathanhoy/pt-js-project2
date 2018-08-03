@@ -36,7 +36,7 @@ img {
 }
 
 .front {
-	background-color: cornflowerblue;
+	background-color: lightgrey;
 }
 
 .frontRed {
@@ -56,18 +56,33 @@ img {
 }
 
 .back {
-	background-color: salmon;
+	// background-color: salmon;
 	transform: rotateY(180deg);
 	display: grid;
 	justify-items: center;
 	align-items: center;
 }
 
-.front.rotate {
+.front.flip {
   transform: rotateY(-180deg);
 }
 
-.back.rotate {
+.back.flip {
   transform: rotateY(0deg);
 }
 
+.bulbasaur {
+	background-color: #90EE90;
+}
+
+.charmander {
+	background-color: #FF7F50;
+}
+
+.squirtle {
+	background-color: #6495ED;
+}
+
+.pikachu {
+	background-color: #F3F781;
+}

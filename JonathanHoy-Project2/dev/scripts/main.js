@@ -26,6 +26,12 @@ const shuffle = (array) => {
   return array;
 };
 
+const checkForFlip = () => {
+	if ($('.front').hasClass('flip')) {
+		console.log('Two flips');
+	};
+};
+
 $(function (){
 	
 	const cardArray = ["bulbasaur", "bulbasaur", "charmander", "charmander", "squirtle", "squirtle", "pikachu", "pikachu"];
@@ -33,23 +39,25 @@ $(function (){
 	let shuffledCardArray = shuffle(cardArray);
 	let shuffledCardList = '';
 	for (let i = 0; i < shuffledCardArray.length; i++) {
-		shuffledCardList += `<li class="card"><div class="card"><div class="front"></div><div class="back"><img src="../dev/assets/${shuffledCardArray[i]}.png" alt="A cute picture of ${shuffledCardArray[i]}."></div></div></li>`;
+		shuffledCardList += `<li class="card"><div class="card"><div class="front"></div><div class="back ${shuffledCardArray[i]}"><img src="../dev/assets/${shuffledCardArray[i]}.png" alt="A cute picture of ${shuffledCardArray[i]}."></div></div></li>`;
 	}
 
 	$('.cards').html(shuffledCardList);
 
 
 	$('.front').on('click', function (){
-		$(this).toggleClass('rotate');
-		$(this).next().toggleClass('rotate');
+		$(this).toggleClass('flip');
+		$(this).next().toggleClass('flip');
+		checkForFlip();
 	});
 
 	$('.back').on('click', function (){
-		$(this).toggleClass('rotate');
-		$(this).prev().toggleClass('rotate');
+		$(this).toggleClass('flip');
+		$(this).prev().toggleClass('flip');
 	});
 
 	// if statement to determine when two cards are flipped, can't flip any more cards?
+
 
 	// if two flipped cards match, add class 'completed' with some CSS and won't be flipped anymore?
 
