@@ -11,6 +11,7 @@
 
 $(function (){
 
+	// CARD LIST
 	const cardArray = ["bulbasaur", "bulbasaur", "charmander", "charmander", "squirtle", "squirtle", "pikachu", "pikachu"];
 	
 
@@ -39,7 +40,7 @@ $(function (){
 
 	$('.cards').html(shuffledCardList);
 
-	console.log(shuffledCardArray);
+	console.log(shuffledCardArray); // to cheat and see the cards
 
 	// FLIPPING CARDS
 	$('.front').on('click', function (){
@@ -51,19 +52,10 @@ $(function (){
 			flippedCards.push('charmander');
 		} else if ($(this).next().hasClass('squirtle')) {
 			flippedCards.push('squirtle');
-		} else {
+		} else if ($(this).next().hasClass('pikachu')) {
 			flippedCards.push('pikachu');
 		};
-		// $(this).next().addClass('disabled');
-		let flippedValue = flippedCards[0].toString();
-		if (flippedCards.length === 2 && flippedCards[0] === flippedCards[1]) {
-			$('.back.flip').addClass('disabled');
-		// } else if (flippedCards.length === 2 && flippedCards[0] !== flippedCards[1]) {
-		// 	$(this).next().removeClass('disabled');
-		};
-		console.log(flippedValue);
 		compareCards();
-		// console.log(flippedCards);
 	});
 
 	// MATCHING LOGIC
@@ -80,15 +72,10 @@ $(function (){
 		} else if (flippedCards.length === 2 && flippedCards[0] === flippedCards[1]) {
 			flippedCards.pop();
 			flippedCards.pop();
+			$('.back.flip').addClass('matched');
 			console.log('Match!');
 		};
 	};
-
-	// if statement to determine when two cards are flipped, can't flip any more cards?
-
-	// if two flipped cards match, add class 'completed' with some CSS and won't be flipped anymore?
-
-
 
 });
 
