@@ -26,15 +26,11 @@ const shuffle = (array) => {
   return array;
 };
 
-const checkForFlip = () => {
-	if ($('.front').hasClass('flip')) {
-		console.log('Two flips');
-	};
-};
 
 $(function (){
 	
 	const cardArray = ["bulbasaur", "bulbasaur", "charmander", "charmander", "squirtle", "squirtle", "pikachu", "pikachu"];
+
 	
 	let shuffledCardArray = shuffle(cardArray);
 	let shuffledCardList = '';
@@ -44,11 +40,26 @@ $(function (){
 
 	$('.cards').html(shuffledCardList);
 
+	console.log(shuffledCardArray);
+
 
 	$('.front').on('click', function (){
 		$(this).toggleClass('flip');
 		$(this).next().toggleClass('flip');
-		checkForFlip();
+		if ($(this).next().hasClass('bulbasaur')) {
+			flippedCards.push('bulbasaur');
+			compareCards();
+		} else if ($(this).next().hasClass('charmander')) {
+			flippedCards.push('charmander');
+			compareCards();
+		} else if ($(this).next().hasClass('squirtle')) {
+			flippedCards.push('squirtle');
+			compareCards();
+		} else {
+			flippedCards.push('pikachu');
+			compareCards();
+		};
+		// console.log(flippedCards);
 	});
 
 	$('.back').on('click', function (){
@@ -56,7 +67,22 @@ $(function (){
 		$(this).prev().toggleClass('flip');
 	});
 
+	const flippedCards = [];
+
+	const compareCards = () => {
+		if (flippedCards.length === 2) {
+			if (flippedCards[0] === flippedCards[1]) {
+				console.log('match!');
+				flippedCards.pop();
+				flippedCards.pop();
+				console.log(flippedCards);
+			};
+		};
+	};
+
 	// if statement to determine when two cards are flipped, can't flip any more cards?
+
+	// FLIPPED ARRAY. When cards are flipped, the string ${shuffledCardArray[i] is added to a new array. When the length of the array is 2, if statement to see if [0] === [1] meaning match.
 
 
 	// if two flipped cards match, add class 'completed' with some CSS and won't be flipped anymore?
