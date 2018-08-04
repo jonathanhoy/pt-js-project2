@@ -242,6 +242,11 @@ img {
   -webkit-transform: rotateY(0deg);
           transform: rotateY(0deg); }
 
+.back.disabled {
+  -webkit-transform: rotateY(0deg);
+          transform: rotateY(0deg);
+  z-index: 999; }
+
 .bulbasaur {
   background-color: #90EE90; }
 
@@ -252,7 +257,7 @@ img {
   background-color: #6495ED; }
 
 .pikachu {
-  background-color: #F3F781; }
+  background-color: #FDFD96; }
 
 .wrapper {
   max-width: 1054px;

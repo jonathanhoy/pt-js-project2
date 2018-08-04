@@ -7,31 +7,30 @@
 
 // Array of "cards" is shuffled and then insterted into the DOM. Using CSS to create flippable cards, user clicks on two cards to reveal image.
 
-const shuffle = (array) => {
-  var currentIndex = array.length, temporaryValue, randomIndex;
-
-  // While there remain elements to shuffle...
-  while (0 !== currentIndex) {
-
-    // Pick a remaining element...
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex -= 1;
-
-    // And swap it with the current element.
-    temporaryValue = array[currentIndex];
-    array[currentIndex] = array[randomIndex];
-    array[randomIndex] = temporaryValue;
-  }
-
-  return array;
-};
 
 
 $(function (){
-	
-	const cardArray = ["bulbasaur", "bulbasaur", "charmander", "charmander", "squirtle", "squirtle", "pikachu", "pikachu"];
 
+	const cardArray = ["bulbasaur", "bulbasaur", "charmander", "charmander", "squirtle", "squirtle", "pikachu", "pikachu"];
 	
+
+	// SHUFFLE FUNCTION
+	const shuffle = (array) => {
+	  var currentIndex = array.length, temporaryValue, randomIndex;
+	  // While there remain elements to shuffle...
+	  while (0 !== currentIndex) {
+	    // Pick a remaining element...
+	    randomIndex = Math.floor(Math.random() * currentIndex);
+	    currentIndex -= 1;
+	    // And swap it with the current element.
+	    temporaryValue = array[currentIndex];
+	    array[currentIndex] = array[randomIndex];
+	    array[randomIndex] = temporaryValue;
+	  }
+	  return array;
+	};
+
+	// SHUFFLING AND PRINTING ARRAY
 	let shuffledCardArray = shuffle(cardArray);
 	let shuffledCardList = '';
 	for (let i = 0; i < shuffledCardArray.length; i++) {
@@ -42,48 +41,50 @@ $(function (){
 
 	console.log(shuffledCardArray);
 
-
+	// FLIPPING CARDS
 	$('.front').on('click', function (){
 		$(this).toggleClass('flip');
 		$(this).next().toggleClass('flip');
 		if ($(this).next().hasClass('bulbasaur')) {
 			flippedCards.push('bulbasaur');
-			compareCards();
 		} else if ($(this).next().hasClass('charmander')) {
 			flippedCards.push('charmander');
-			compareCards();
 		} else if ($(this).next().hasClass('squirtle')) {
 			flippedCards.push('squirtle');
-			compareCards();
 		} else {
 			flippedCards.push('pikachu');
-			compareCards();
 		};
+		// $(this).next().addClass('disabled');
+		let flippedValue = flippedCards[0].toString();
+		if (flippedCards.length === 2 && flippedCards[0] === flippedCards[1]) {
+			$('.back.flip').addClass('disabled');
+		// } else if (flippedCards.length === 2 && flippedCards[0] !== flippedCards[1]) {
+		// 	$(this).next().removeClass('disabled');
+		};
+		console.log(flippedValue);
+		compareCards();
 		// console.log(flippedCards);
 	});
 
-	$('.back').on('click', function (){
-		$(this).toggleClass('flip');
-		$(this).prev().toggleClass('flip');
-	});
-
+	// MATCHING LOGIC
 	const flippedCards = [];
 
 	const compareCards = () => {
-		if (flippedCards.length === 2) {
-			if (flippedCards[0] === flippedCards[1]) {
-				console.log('match!');
-				flippedCards.pop();
-				flippedCards.pop();
-				console.log(flippedCards);
-			};
+		if (flippedCards.length > 2 && flippedCards[0] !== flippedCards[1]) {
+			flippedCards.pop();
+			flippedCards.pop();
+			flippedCards.pop();
+			console.log(flippedCards);
+			$('.front').removeClass('flip');
+			$('.back').removeClass('flip');
+		} else if (flippedCards.length === 2 && flippedCards[0] === flippedCards[1]) {
+			flippedCards.pop();
+			flippedCards.pop();
+			console.log('Match!');
 		};
 	};
 
 	// if statement to determine when two cards are flipped, can't flip any more cards?
-
-	// FLIPPED ARRAY. When cards are flipped, the string ${shuffledCardArray[i] is added to a new array. When the length of the array is 2, if statement to see if [0] === [1] meaning match.
-
 
 	// if two flipped cards match, add class 'completed' with some CSS and won't be flipped anymore?
 

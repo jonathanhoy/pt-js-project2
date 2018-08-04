@@ -71,6 +71,11 @@ img {
   transform: rotateY(0deg);
 }
 
+.back.disabled {
+	transform: rotateY(0deg);
+	z-index: 999;
+}
+
 .bulbasaur {
 	background-color: #90EE90;
 }
@@ -84,5 +89,5 @@ img {
 }
 
 .pikachu {
-	background-color: #F3F781;
+	background-color: #FDFD96;
 }
