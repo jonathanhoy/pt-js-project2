@@ -174,7 +174,7 @@ template {
 img {
   max-width: 100%; }
 
-ul {
+.cards {
   list-style: none;
   padding: 0;
   display: grid;
@@ -182,13 +182,17 @@ ul {
   grid-template-rows: repeat(2, 256px);
   grid-gap: 10px; }
 
+.cards.hardGrid {
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(2, 167.33px); }
+
 @media (max-width: 768px) {
-  ul {
+  .cards {
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(2, calc(((768px * 0.95) - 30px) / 4)); } }
 
 @media (max-width: 425px) {
-  ul {
+  .cards {
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(4, calc(((425px * 0.95) - 20px) / 3));
     -webkit-box-pack: center;
@@ -196,10 +200,10 @@ ul {
             justify-content: center;
     -ms-flex-line-pack: center;
         align-content: center; }
-    ul .card:nth-child(5) {
+    .cards .card:nth-child(5) {
       grid-column: 3/4;
       grid-row: 2/3; }
-    ul .card:nth-child(6) {
+    .cards .card:nth-child(6) {
       grid-column: 1/2; } }
 
 img {
@@ -227,26 +231,12 @@ img {
   transition: -webkit-transform 0.5s;
   transition: transform 0.5s;
   transition: transform 0.5s, -webkit-transform 0.5s;
-  -webkit-box-shadow: 0px 5px 10px #888888;
-          box-shadow: 0px 5px 10px #888888;
+  -webkit-box-shadow: 0 5px 10px #888888;
+          box-shadow: 0 5px 10px #888888;
   border: 5px solid black; }
 
 .front {
   background-color: lightgrey; }
-
-.frontRed {
-  background: red;
-  z-index: 10;
-  height: 100%;
-  width: 100%;
-  margin: 0 auto; }
-
-.frontWhite {
-  background: grey;
-  z-index: 10;
-  height: 100%;
-  width: 100%;
-  margin: 0 auto; }
 
 .back {
   -webkit-transform: rotateY(180deg);
@@ -257,15 +247,11 @@ img {
       -ms-flex-align: center;
           align-items: center; }
 
-.front.flip {
+.front.flip, .front.matched {
   -webkit-transform: rotateY(-180deg);
           transform: rotateY(-180deg); }
 
-.back.flip {
-  -webkit-transform: rotateY(0deg);
-          transform: rotateY(0deg); }
-
-.back.matched {
+.back.flip, .back.matched {
   -webkit-transform: rotateY(0deg);
           transform: rotateY(0deg); }
 

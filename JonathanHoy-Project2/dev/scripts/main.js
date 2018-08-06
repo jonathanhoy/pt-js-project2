@@ -12,7 +12,7 @@
 $(function (){
 
 	// CARD LIST
-	const cardArray = ["bulbasaur", "bulbasaur", "charmander", "charmander", "squirtle", "squirtle", "pikachu", "pikachu"];
+	let cardArray = ["bulbasaur", "bulbasaur", "charmander", "charmander", "squirtle", "squirtle", "pikachu", "pikachu"];
 	
 
 	// SHUFFLE FUNCTION
@@ -36,10 +36,8 @@ $(function (){
 	let shuffledCardList = '';
 	for (let i = 0; i < shuffledCardArray.length; i++) {
 		shuffledCardList += `<li class="card"><div class="card"><div class="front"></div><div class="back ${shuffledCardArray[i]}"><img src="../dev/assets/${shuffledCardArray[i]}.png" alt="A cute picture of ${shuffledCardArray[i]}."></div></div></li>`;
-	}
-
+	};
 	$('.cards').html(shuffledCardList);
-
 	console.log(shuffledCardArray); // to cheat and see the cards
 
 	// FLIPPING CARDS
@@ -54,6 +52,10 @@ $(function (){
 			flippedCards.push('squirtle');
 		} else if ($(this).next().hasClass('pikachu')) {
 			flippedCards.push('pikachu');
+		} else if ($(this).next().hasClass('jigglypuff')) {
+			flippedCards.push('jigglypuff');
+		} else if ($(this).next().hasClass('eevee')) {
+			flippedCards.push('eevee');
 		};
 		compareCards();
 	});
@@ -62,20 +64,44 @@ $(function (){
 	const flippedCards = [];
 
 	const compareCards = () => {
-		if (flippedCards.length > 2 && flippedCards[0] !== flippedCards[1]) {
+		if (flippedCards.length === 2 && flippedCards[0] !== flippedCards[1]) {
+			const newVal = parseInt($('.count').text()) + 1;
+			$('.count').text(newVal);
 			flippedCards.pop();
 			flippedCards.pop();
-			flippedCards.pop();
-			console.log(flippedCards);
-			$('.front').removeClass('flip');
-			$('.back').removeClass('flip');
+			$('.front').css('pointer-events', 'none');
+			setTimeout(function(){
+				$('.front').removeClass('flip');
+				$('.back').removeClass('flip');
+				$('.front').css('pointer-events', 'auto');
+			},750);
 		} else if (flippedCards.length === 2 && flippedCards[0] === flippedCards[1]) {
+			const newVal = parseInt($('.count').text()) + 1;
+			$('.count').text(newVal);
 			flippedCards.pop();
 			flippedCards.pop();
 			$('.back.flip').addClass('matched');
-			console.log('Match!');
+			$('.front.flip').addClass('matched');
 		};
 	};
+
+	// PLAY AGAIN
+	$('button').on('click', function (){
+		location.reload();
+	});
+
+	// DIFFICULTY
+	$('.hardMode').on('click', function(){
+		$('.cards').toggleClass('hardGrid');
+		cardArray.push('jigglypuff', 'jigglypuff', 'eevee', 'eevee');
+		let shuffledCardArray = shuffle(cardArray);
+		let shuffledCardList = '';
+		for (let i = 0; i < shuffledCardArray.length; i++) {
+			shuffledCardList += `<li class="card"><div class="card"><div class="front"></div><div class="back ${shuffledCardArray[i]}"><img src="../dev/assets/${shuffledCardArray[i]}.png" alt="A cute picture of ${shuffledCardArray[i]}."></div></div></li>`;
+		};
+		$('.cards.hardGrid').html(shuffledCardList);
+		console.log(shuffledCardArray);
+	});
 
 });
 
