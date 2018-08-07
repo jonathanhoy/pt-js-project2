@@ -5,23 +5,16 @@
 	grid-template-columns: repeat(4, 1fr);
 	grid-template-rows: repeat(2, 256px);
 	grid-gap: 10px;
-	// justify-content: center;
 }
 
 .cards.hardGrid {
+	list-style: none;
+	padding: 0;
+	display: grid;
 	grid-template-columns: repeat(6, 1fr);
 	grid-template-rows: repeat(2, 167.33px);
+	grid-gap: 10px;
 }
-
-// .cards.hardGrid {
-// 	list-style: none;
-// 	padding: 0;
-// 	display: grid;
-// 	grid-template-columns: repeat(5, 1fr);
-// 	grid-template-rows: repeat(2, 256px);
-// 	grid-gap: 10px;
-// 	// justify-content: center;
-// }
 
 @media (max-width: 768px) {
 	.cards {
@@ -107,3 +100,13 @@ img {
 .pikachu {
 	background-color: #FDFD96;
 }
+
+.eevee {
+	background-color: #FAF0E6;
+}
+
+.dratini {
+	background-color: #ADD8E6;
+}
+
+

@@ -183,8 +183,12 @@ img {
   grid-gap: 10px; }
 
 .cards.hardGrid {
+  list-style: none;
+  padding: 0;
+  display: grid;
   grid-template-columns: repeat(6, 1fr);
-  grid-template-rows: repeat(2, 167.33px); }
+  grid-template-rows: repeat(2, 167.33px);
+  grid-gap: 10px; }
 
 @media (max-width: 768px) {
   .cards {
@@ -266,6 +270,12 @@ img {
 
 .pikachu {
   background-color: #FDFD96; }
+
+.eevee {
+  background-color: #FAF0E6; }
+
+.dratini {
+  background-color: #ADD8E6; }
 
 .wrapper {
   max-width: 1054px;
