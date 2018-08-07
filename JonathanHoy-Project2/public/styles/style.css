@@ -272,10 +272,21 @@ img {
   background-color: #FDFD96; }
 
 .eevee {
-  background-color: #FAF0E6; }
+  background-color: #FAEBD7; }
 
 .dratini {
-  background-color: #F0FFFF; }
+  background-color: #E0FFFF; }
+
+body {
+  font-size: 62.5%; }
+
+h1, h2, h3 {
+  font-size: 2rem;
+  font-family: 'Roboto', sans-serif; }
+
+li, a, p, span, button {
+  font-size: 1.6rem;
+  font-family: 'Nanum Gothic', sans-serif; }
 
 .wrapper {
   max-width: 1054px;
@@ -284,3 +295,33 @@ img {
 
 h1 {
   text-align: center; }
+
+nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center; }
+  nav .difficulty {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex; }
+    nav .difficulty ul {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      list-style: none;
+      padding: 0;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center; }
+  nav div {
+    width: 33.33%;
+    margin: 0 auto;
+    text-align: center; }
+  nav div:last-child {
+    text-align: right; }

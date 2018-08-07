@@ -5,27 +5,34 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Match Game</title>
+	<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Roboto" rel="stylesheet">
 	<link rel="stylesheet" href="public/styles/style.css">
 </head>
 <body>
-	
-
 	<div class="wrapper">
-		<button>play again</button>
-
-		<p>Tries: <span class="count">0</span></p>
-
-		<h2>difficulty</h2>
-		<ul>
-			<li><button class="normalMode">Normal</button></li>
-			<li><a class="hardMode">Hard</a></li>
-		</ul>
-
-		<h1>Where's that Pokémon?!</h1>
-
-		<ul class="cards">
+		<header>
+			<h1>Where's that Pokémon?!</h1>
+		</header>
+		<nav>
+			<div class="difficulty">
+				<h2>Difficulty</h2>
+				<ul>
+					<li><a class="normalMode">Normal</a></li>
+					<li><a class="hardMode">Hard</a></li>
+				</ul>
+			</div>
 			
-		</ul>
+			<div class="count">
+				<p>Tries: <span class="count">0</span></p>	
+			</div>
+			
+			<div class="buttons">
+				<button class="playAgain">Play Again</button>
+			</div>
+		</nav>
+		<main>
+			<ul class="cards"></ul>
+		</main>
 	</div>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

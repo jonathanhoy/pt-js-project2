@@ -1,0 +1,51 @@
+// font-family: 'Roboto', sans-serif;
+// font-family: 'Nanum Gothic', sans-serif;
+
+body {
+	font-size: 62.5%;
+}
+
+h1, h2, h3 {
+	font-size: 2rem;
+	font-family: 'Roboto', sans-serif;
+}
+
+li, a, p, span, button {
+	font-size: 1.6rem;
+	font-family: 'Nanum Gothic', sans-serif;
+}
+
+.wrapper {
+	max-width: 1054px;
+	width: 95%;
+	margin: 0 auto;
+}
+
+h1 {
+	text-align: center;
+}
+
+nav {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	.difficulty {
+		display: flex;
+		ul {
+			display: flex;
+			list-style: none;
+			padding: 0;
+			align-items: center;
+			li, a {
+			}
+		}
+	}
+	div {
+		width: 33.33%;
+		margin: 0 auto;
+		text-align: center;
+	}
+	div:last-child {
+		text-align: right;
+	}
+}

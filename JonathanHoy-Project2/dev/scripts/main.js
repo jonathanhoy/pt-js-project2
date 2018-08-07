@@ -121,10 +121,14 @@ $(function (){
 		});
 	};
 
+	let playNormalMode = () => {
+		location.reload();
+	}
+
 	playHardMode();
 
 	// PLAY AGAIN
-	$('button').on('click', function (){
+	$('.playAgain, .normalMode').on('click', function (){
 		location.reload();
 	});
 
