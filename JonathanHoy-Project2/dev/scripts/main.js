@@ -90,6 +90,8 @@ $(function (){
 	// DIFFICULTY
 	let playHardMode = () => {
 		$('.hardMode').on('click', function(){
+			$('aside').addClass('hidden');
+			$('.count').text("0");
 			$('.cards').toggleClass('hardGrid');
 			cardArray.push('eevee', 'eevee', 'dratini', 'dratini');
 			let shuffledCardArray = shuffle(cardArray);
@@ -122,14 +124,22 @@ $(function (){
 	};
 
 	let playNormalMode = () => {
-		location.reload();
+		$('aside').addClass('hidden');
+		// location.reload();
 	}
 
 	playHardMode();
+	playNormalMode();
 
 	// PLAY AGAIN
 	$('.playAgain, .normalMode').on('click', function (){
 		location.reload();
+	});
+
+
+	// MENU
+	$('i').on('click', function(){
+		$('aside').toggleClass("hidden");
 	});
 
 

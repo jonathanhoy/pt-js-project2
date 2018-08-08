@@ -5,47 +5,55 @@ body {
 	font-size: 62.5%;
 }
 
-h1, h2, h3 {
-	font-size: 2rem;
-	font-family: 'Roboto', sans-serif;
-}
-
-li, a, p, span, button {
-	font-size: 1.6rem;
-	font-family: 'Nanum Gothic', sans-serif;
-}
-
 .wrapper {
 	max-width: 1054px;
 	width: 95%;
 	margin: 0 auto;
 }
 
-h1 {
+h1, h2, h3 {
+	font-size: 2rem;
+	font-family: 'Roboto', sans-serif;
 	text-align: center;
 }
 
-nav {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	.difficulty {
-		display: flex;
-		ul {
-			display: flex;
-			list-style: none;
-			padding: 0;
-			align-items: center;
-			li, a {
-			}
-		}
-	}
+li, a, p, span, button, i {
+	font-size: 1.6rem;
+	font-family: 'Nanum Gothic', sans-serif;
+}
+
+a, button {
+	border: 3px solid black;
+	border-radius: 100px;
+	padding: 5px 15px;
+	cursor: pointer;
+}
+
+i {
+	position: absolute;
+	left: 10px;
+}
+
+aside {
+	width: 300px;
+	height: 80vh;
+	background-color: lightgrey;
+	border: 5px solid black;
+	border-radius: 50px;
+	position: absolute;
+	left: -50px;
+	z-index: 100;
+	transition: all 0.5s ease-in-out;
 	div {
-		width: 33.33%;
-		margin: 0 auto;
-		text-align: center;
+		padding-left: 55px;
 	}
-	div:last-child {
-		text-align: right;
-	}
+}
+
+.hidden {
+	left: -250px;
+}
+
+section {
+	display: flex;
+	justify-content: space-around;
 }

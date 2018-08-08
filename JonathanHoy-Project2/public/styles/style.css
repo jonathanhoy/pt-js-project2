@@ -280,48 +280,50 @@ img {
 body {
   font-size: 62.5%; }
 
-h1, h2, h3 {
-  font-size: 2rem;
-  font-family: 'Roboto', sans-serif; }
-
-li, a, p, span, button {
-  font-size: 1.6rem;
-  font-family: 'Nanum Gothic', sans-serif; }
-
 .wrapper {
   max-width: 1054px;
   width: 95%;
   margin: 0 auto; }
 
-h1 {
+h1, h2, h3 {
+  font-size: 2rem;
+  font-family: 'Roboto', sans-serif;
   text-align: center; }
 
-nav {
+li, a, p, span, button, i {
+  font-size: 1.6rem;
+  font-family: 'Nanum Gothic', sans-serif; }
+
+a, button {
+  border: 3px solid black;
+  border-radius: 100px;
+  padding: 5px 15px;
+  cursor: pointer; }
+
+i {
+  position: absolute;
+  left: 10px; }
+
+aside {
+  width: 300px;
+  height: 80vh;
+  background-color: lightgrey;
+  border: 5px solid black;
+  border-radius: 50px;
+  position: absolute;
+  left: -50px;
+  z-index: 100;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out; }
+  aside div {
+    padding-left: 55px; }
+
+.hidden {
+  left: -250px; }
+
+section {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center; }
-  nav .difficulty {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex; }
-    nav .difficulty ul {
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: flex;
-      list-style: none;
-      padding: 0;
-      -webkit-box-align: center;
-          -ms-flex-align: center;
-              align-items: center; }
-  nav div {
-    width: 33.33%;
-    margin: 0 auto;
-    text-align: center; }
-  nav div:last-child {
-    text-align: right; }
+  -ms-flex-pack: distribute;
+      justify-content: space-around; }

@@ -6,30 +6,42 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Match Game</title>
 	<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Roboto" rel="stylesheet">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 	<link rel="stylesheet" href="public/styles/style.css">
 </head>
 <body>
+	<header>
+		<i class="fas fa-bars"></i>
+		<h1>Where's that Pokémon?!</h1>
+	</header>
 	<div class="wrapper">
-		<header>
-			<h1>Where's that Pokémon?!</h1>
-		</header>
-		<nav>
-			<div class="difficulty">
-				<h2>Difficulty</h2>
+		<aside>
+			<div class="difficultyButtons">
+				<p>Difficulty:</p>
 				<ul>
 					<li><a class="normalMode">Normal</a></li>
 					<li><a class="hardMode">Hard</a></li>
 				</ul>
 			</div>
-			
-			<div class="count">
-				<p>Tries: <span class="count">0</span></p>	
+			<div class="timerButton">
+				<p>Timer:</p>
+				<ul>
+					<li><a class="normalTimer">Normal</a></li>
+					<li><a class="hardTimer">Hard</a></li>
+				</ul>
 			</div>
-			
-			<div class="buttons">
+			<div class="playAgainButton">
 				<button class="playAgain">Play Again</button>
 			</div>
-		</nav>
+		</aside>
+		<section>
+			<div class="tries">
+				<p>Tries: <span class="count">0</span></p>	
+			</div>
+			<div class="clock">
+				<p>Time Left: <span class="timer">0</span></p>
+			</div>			
+		</section>
 		<main>
 			<ul class="cards"></ul>
 		</main>
