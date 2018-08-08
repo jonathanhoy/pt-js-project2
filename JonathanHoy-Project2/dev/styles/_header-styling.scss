@@ -27,6 +27,10 @@ a, button {
 	border-radius: 100px;
 	padding: 5px 15px;
 	cursor: pointer;
+	background: white;
+	width: 100%;
+	display: inline-block;
+	text-align: center;
 }
 
 i {
@@ -45,13 +49,31 @@ aside {
 	z-index: 100;
 	transition: all 0.5s ease-in-out;
 	div {
-		padding-left: 55px;
+		p {
+			margin: 0;
+		}
+	}
+	ul {
+		list-style: none;
+		padding: 0;
+		li {
+			margin-top: 20px;
+		}
 	}
 }
 
 .hidden {
 	left: -250px;
 }
+
+.asideWrapper {
+	padding: 50px 50px 50px 55px;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
 
 section {
 	display: flex;
