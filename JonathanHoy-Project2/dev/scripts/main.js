@@ -31,6 +31,15 @@ $(function (){
 	  return array;
 	};
 
+	// SHUFFLING AND PRINTING ARRAY
+	let shuffledCardArray = shuffle(cardArray);
+	let shuffledCardList = '';
+	for (let i = 0; i < shuffledCardArray.length; i++) {
+		shuffledCardList += `<li class="card"><div class="card"><div class="front"></div><div class="back ${shuffledCardArray[i]}"><img src="../dev/assets/${shuffledCardArray[i]}.png" alt="A cute picture of ${shuffledCardArray[i]}."></div></div></li>`;
+	};
+	$('.cards').html(shuffledCardList);
+	console.log(shuffledCardArray); // to cheat and see the cards
+
 	// MATCHING LOGIC
 	const flippedCards = [];
 
@@ -56,36 +65,29 @@ $(function (){
 		};
 	};
 
-	// SHUFFLING AND PRINTING ARRAY
-	let shuffledCardArray = shuffle(cardArray);
-	let shuffledCardList = '';
-	for (let i = 0; i < shuffledCardArray.length; i++) {
-		shuffledCardList += `<li class="card"><div class="card"><div class="front"></div><div class="back ${shuffledCardArray[i]}"><img src="../dev/assets/${shuffledCardArray[i]}.png" alt="A cute picture of ${shuffledCardArray[i]}."></div></div></li>`;
-	};
-	$('.cards').html(shuffledCardList);
-	console.log(shuffledCardArray); // to cheat and see the cards
-
-
-
 	// FLIPPING CARDS (NORMAL MODE)
-	$('.front').on('click', function (){
-		$(this).toggleClass('flip');
-		$(this).next().toggleClass('flip');
-		if ($(this).next().hasClass('bulbasaur')) {
-			flippedCards.push('bulbasaur');
-		} else if ($(this).next().hasClass('charmander')) {
-			flippedCards.push('charmander');
-		} else if ($(this).next().hasClass('squirtle')) {
-			flippedCards.push('squirtle');
-		} else if ($(this).next().hasClass('pikachu')) {
-			flippedCards.push('pikachu');
-		} else if ($(this).next().hasClass('eevee')) {
-			flippedCards.push('eevee');
-		} else if ($(this).next().hasClass('dratini')) {
-			flippedCards.push('dratini');
-		};
-		compareCards();
-	});
+	let cardFlip = () => {
+		$('.front').on('click', function (){
+			$(this).toggleClass('flip');
+			$(this).next().toggleClass('flip');
+			if ($(this).next().hasClass('bulbasaur')) {
+				flippedCards.push('bulbasaur');
+			} else if ($(this).next().hasClass('charmander')) {
+				flippedCards.push('charmander');
+			} else if ($(this).next().hasClass('squirtle')) {
+				flippedCards.push('squirtle');
+			} else if ($(this).next().hasClass('pikachu')) {
+				flippedCards.push('pikachu');
+			} else if ($(this).next().hasClass('eevee')) {
+				flippedCards.push('eevee');
+			} else if ($(this).next().hasClass('dratini')) {
+				flippedCards.push('dratini');
+			};
+			compareCards();
+		});
+	};
+
+	cardFlip();
 
 	// DIFFICULTY
 	let playHardMode = () => {

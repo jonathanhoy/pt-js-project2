@@ -182,14 +182,6 @@ img {
   grid-template-rows: repeat(2, 256px);
   grid-gap: 10px; }
 
-.cards.hardGrid {
-  list-style: none;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-template-rows: repeat(2, 167.33px);
-  grid-gap: 10px; }
-
 @media (max-width: 768px) {
   .cards {
     grid-template-columns: repeat(4, 1fr);
@@ -209,6 +201,32 @@ img {
       grid-row: 2/3; }
     .cards .card:nth-child(6) {
       grid-column: 1/2; } }
+
+.cards.hardGrid {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(2, 167.33px);
+  grid-gap: 10px; }
+
+@media (max-width: 768px) {
+  .cards.hardGrid {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 174.89px); } }
+
+@media (max-width: 425px) {
+  .cards.hardGrid {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4, 125px); }
+    .cards.hardGrid .card:nth-child(5) {
+      grid-column: 2/3;
+      grid-row: 2/3; }
+    .cards.hardGrid .card:nth-child(6) {
+      grid-column: 3/4;
+      grid-row: 2/3; }
+  section p {
+    margin: 0 0 10px 0; } }
 
 img {
   max-width: 75%; }
@@ -240,7 +258,7 @@ img {
   border: 5px solid black; }
 
 .front {
-  background-color: lightgrey; }
+  background-color: #A9A9A9; }
 
 .back {
   -webkit-transform: rotateY(180deg);
@@ -290,6 +308,12 @@ h1, h2, h3 {
   font-family: 'Roboto', sans-serif;
   text-align: center; }
 
+@media (max-width: 375px) {
+  h1 {
+    font-size: 1.8rem; }
+  section p, section span {
+    font-size: 1.6rem; } }
+
 li, a, p, span, button, i {
   font-size: 1.6rem;
   font-family: 'Nanum Gothic', sans-serif; }
@@ -304,14 +328,19 @@ a, button {
   display: inline-block;
   text-align: center; }
 
-i {
-  position: absolute;
-  left: 10px; }
+header {
+  position: relative; }
+  header i {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%); }
 
 aside {
   width: 300px;
   height: 80vh;
-  background-color: lightgrey;
+  background-color: #D3D3D3;
   border: 5px solid black;
   border-radius: 50px;
   position: absolute;
@@ -343,6 +372,10 @@ aside {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between; }
+
+@media (max-width: 768px) {
+  .hidden {
+    left: -300px; } }
 
 section {
   display: -webkit-box;

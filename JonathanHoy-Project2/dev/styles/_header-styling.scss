@@ -17,6 +17,15 @@ h1, h2, h3 {
 	text-align: center;
 }
 
+@media (max-width: 375px) {
+	h1 {
+		font-size: 1.8rem;
+	}
+	section p, section span {
+		font-size: 1.6rem;
+	}
+}
+
 li, a, p, span, button, i {
 	font-size: 1.6rem;
 	font-family: 'Nanum Gothic', sans-serif;
@@ -33,15 +42,21 @@ a, button {
 	text-align: center;
 }
 
-i {
-	position: absolute;
-	left: 10px;
+header {
+	position: relative;
+	i {
+		position: absolute;
+		left: 10px;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+
 }
 
 aside {
 	width: 300px;
 	height: 80vh;
-	background-color: lightgrey;
+	background-color: #D3D3D3;
 	border: 5px solid black;
 	border-radius: 50px;
 	position: absolute;
@@ -72,6 +87,12 @@ aside {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
+}
+
+@media (max-width: 768px) {
+	.hidden {
+		left: -300px;
+	}
 }
 
 
