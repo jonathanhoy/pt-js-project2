@@ -17,15 +17,6 @@ h1, h2, h3 {
 	text-align: center;
 }
 
-@media (max-width: 375px) {
-	h1 {
-		font-size: 1.8rem;
-	}
-	section p, section span {
-		font-size: 1.6rem;
-	}
-}
-
 li, a, p, span, button, i {
 	font-size: 1.6rem;
 	font-family: 'Nanum Gothic', sans-serif;
@@ -89,14 +80,35 @@ aside {
 	justify-content: space-between;
 }
 
+section {
+	display: flex;
+	justify-content: space-around;
+}
+
 @media (max-width: 768px) {
 	.hidden {
 		left: -300px;
 	}
 }
 
-
-section {
-	display: flex;
-	justify-content: space-around;
+@media (max-width: 425px) {
+	h1 {
+		font-size: 1.4rem;
+	}
+	section p, section span {
+		font-size: 1.2rem;
+	}
+	aside {
+		width: 300px;
+		height: 70vh;
+		p, a, li, button {
+			font-size: 1.4rem;
+		}
+		.asideWrapper {
+			padding: 20px 50px 20px 55px;
+		}
+	}
+	i {
+		font-size: 1.4rem;
+	}
 }
