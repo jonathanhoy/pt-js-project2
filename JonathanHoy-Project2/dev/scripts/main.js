@@ -28,10 +28,34 @@ let shuffleCards = (array) => {
 	console.log(shuffledCardArray); // to cheat and see the cards
 };
 
+// FLIPPING CARDS (NORMAL MODE)
+const cardFlip = (array) => {
+	$('.front').on('click', function (){
+		$(this).toggleClass('flip');
+		$(this).next().toggleClass('flip');
+		if ($(this).next().hasClass('bulbasaur')) {
+			flippedCards.push('bulbasaur');
+		} else if ($(this).next().hasClass('charmander')) {
+			flippedCards.push('charmander');
+		} else if ($(this).next().hasClass('squirtle')) {
+			flippedCards.push('squirtle');
+		} else if ($(this).next().hasClass('pikachu')) {
+			flippedCards.push('pikachu');
+		} else if ($(this).next().hasClass('eevee')) {
+			flippedCards.push('eevee');
+		} else if ($(this).next().hasClass('dratini')) {
+			flippedCards.push('dratini');
+		};
+		compareCards(array);
+	});
+};
+
 // MATCHING LOGIC
 const flippedCards = [];
 
-const compareCards = () => {
+let winCount = [];
+
+const compareCards = (array) => {
 	if (flippedCards.length === 2 && flippedCards[0] !== flippedCards[1]) {
 		const newVal = parseInt($('.count').text()) + 1;
 		$('.count').text(newVal);
@@ -50,81 +74,88 @@ const compareCards = () => {
 		flippedCards.pop();
 		$('.back.flip').addClass('matched');
 		$('.front.flip').addClass('matched');
+		winCount.push('matched');
+		console.log(winCount);
+		winMessage(array);
 	};
 };
 
-// FLIPPING CARDS (NORMAL MODE)
-const cardFlip = () => {
-	$('.front').on('click', function (){
-		$(this).toggleClass('flip');
-		$(this).next().toggleClass('flip');
-		if ($(this).next().hasClass('bulbasaur')) {
-			flippedCards.push('bulbasaur');
-		} else if ($(this).next().hasClass('charmander')) {
-			flippedCards.push('charmander');
-		} else if ($(this).next().hasClass('squirtle')) {
-			flippedCards.push('squirtle');
-		} else if ($(this).next().hasClass('pikachu')) {
-			flippedCards.push('pikachu');
-		} else if ($(this).next().hasClass('eevee')) {
-			flippedCards.push('eevee');
-		} else if ($(this).next().hasClass('dratini')) {
-			flippedCards.push('dratini');
-		};
-		compareCards();
-	});
-};
-
 // DIFFICULTY
-let playHardMode = () => {
+let switchToHardMode = () => {
 	$('.hardMode').on('click', function(){
-		$('aside').addClass('hidden');
-		$('.cards').toggleClass('hardGrid');
+		$('.cards').addClass('hardGrid');
 		if (cardArray.length === 8) {
 			cardArray.push('eevee', 'eevee', 'dratini', 'dratini');
 		}
 		shuffleCards(cardArray);
-		cardFlip();
+		cardFlip(cardArray);
+	});
+	winCount = winCount.filter((match) => {
+		if (match !== 'matched') {
+			return true;
+		};
 	});
 };
 
-let playNormalMode = () => {
+
+let switchToNormalMode = () => {
 	$('.normalMode').on('click', function(){
-		$('aside').addClass('hidden');
-		$('.cards').toggleClass('hardGrid');
-		const normalModeArray = cardArray.filter((name) => {
-			if (name !== 'dratini' && name !== 'eevee') {
+		$('.cards').removeClass('hardGrid');
+		const normalModeArray = cardArray.filter((pokemon) => {
+			if (pokemon !== 'dratini' && pokemon !== 'eevee') {
 				return true;
 			};
 		});
-		// console.log(normalModeArray);
 		shuffleCards(normalModeArray);
-		cardFlip();
-		// console.log(normalCardArray);
+		cardFlip(normalModeArray);
+		winCount = winCount.filter((match) => {
+			if (match !== 'matched') {
+				return true;
+			};
+		winMessage(normalModeArray);
+		});
 	});
 };
 
-// PLAY AGAIN & RESETS
-$('.playAgain').on('click', function (){
-	location.reload();
-});
-
+// RESET
 $('a').on('click', function (){
 	$('.count').text("0");
-})
+	$('aside').addClass('hidden');
+});
 
 // MENU
 $('i').on('click', function(){
 	$('aside').toggleClass("hidden");
 });
 
+// WINNING
+let winMessage = (array) => {
+	let tries = parseInt($('.count').text());
+	let pairs = array.length / 2;
+	console.log(tries);
+	console.log(pairs);
+	setTimeout(function(){
+		if (winCount.length === (array.length / 2)) {
+			winCount = winCount.filter((match) => {
+				if (match !== 'matched') {
+					return true;
+				};
+			});
+			if (tries === pairs) {
+				alert(`Congratulations! You won in ${$('.count').text()} tries! A perfect round! You are the best!!`);
+			} else {
+				alert(`Congratulations! You won in ${$('.count').text()} tries! Select a difficulty to play again!`);
+			};
+		};
+	},10);
+};
 
 // INIT
 let init = () => {
 	shuffleCards(cardArray);
-	cardFlip();
-	playHardMode();
-	playNormalMode();
+	cardFlip(cardArray);
+	switchToHardMode();
+	switchToNormalMode();
 };
 
 
