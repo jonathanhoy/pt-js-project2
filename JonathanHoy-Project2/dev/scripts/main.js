@@ -89,11 +89,12 @@ let switchToHardMode = () => {
 		}
 		shuffleCards(cardArray);
 		cardFlip(cardArray);
-	});
 	winCount = winCount.filter((match) => {
 		if (match !== 'matched') {
 			return true;
 		};
+	});
+	winMessage(cardArray);
 	});
 };
 
