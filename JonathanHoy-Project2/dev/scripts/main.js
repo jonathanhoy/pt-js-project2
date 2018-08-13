@@ -133,8 +133,6 @@ $('i').on('click', function(){
 let winMessage = (array) => {
 	let tries = parseInt($('.count').text());
 	let pairs = array.length / 2;
-	console.log(tries);
-	console.log(pairs);
 	setTimeout(function(){
 		if (winCount.length === (array.length / 2)) {
 			winCount = winCount.filter((match) => {
@@ -148,7 +146,7 @@ let winMessage = (array) => {
 				alert(`Congratulations! You won in ${$('.count').text()} tries! Select a difficulty to play again!`);
 			};
 		};
-	},10);
+	},300);
 };
 
 // INIT
