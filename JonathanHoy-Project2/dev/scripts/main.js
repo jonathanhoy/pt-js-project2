@@ -18,7 +18,7 @@ const shuffle = (array) => {
 };
 
 // SHUFFLING AND PRINTING ARRAY
-let shuffleCards = (array) => {
+const shuffleCards = (array) => {
 	let shuffledCardArray = shuffle(array);
 	let shuffledCardList = '';
 	for (let i = 0; i < shuffledCardArray.length; i++) {
@@ -28,22 +28,22 @@ let shuffleCards = (array) => {
 	console.log(shuffledCardArray); // to cheat and see the cards
 };
 
-// FLIPPING CARDS (NORMAL MODE)
+// FLIPPING CARDS
 const cardFlip = (array) => {
 	$('.front').on('click', function (){
 		$(this).toggleClass('flip');
 		$(this).next().toggleClass('flip');
-		if ($(this).next().hasClass('bulbasaur')) {
+		if ($(this).next().hasClass('bulbasaur') && seconds > 0) {
 			flippedCards.push('bulbasaur');
-		} else if ($(this).next().hasClass('charmander')) {
+		} else if ($(this).next().hasClass('charmander') && seconds > 0) {
 			flippedCards.push('charmander');
-		} else if ($(this).next().hasClass('squirtle')) {
+		} else if ($(this).next().hasClass('squirtle') && seconds > 0) {
 			flippedCards.push('squirtle');
-		} else if ($(this).next().hasClass('pikachu')) {
+		} else if ($(this).next().hasClass('pikachu') && seconds > 0) {
 			flippedCards.push('pikachu');
-		} else if ($(this).next().hasClass('eevee')) {
+		} else if ($(this).next().hasClass('eevee') && seconds > 0) {
 			flippedCards.push('eevee');
-		} else if ($(this).next().hasClass('dratini')) {
+		} else if ($(this).next().hasClass('dratini') && seconds > 0) {
 			flippedCards.push('dratini');
 		};
 		compareCards(array);
@@ -57,8 +57,7 @@ let winCount = [];
 
 const compareCards = (array) => {
 	if (flippedCards.length === 2 && flippedCards[0] !== flippedCards[1]) {
-		const newVal = parseInt($('.count').text()) + 1;
-		$('.count').text(newVal);
+		addToCount();
 		flippedCards.pop();
 		flippedCards.pop();
 		$('.front').css('pointer-events', 'none');
@@ -68,69 +67,25 @@ const compareCards = (array) => {
 			$('.front').css('pointer-events', 'auto');
 		},750);
 	} else if (flippedCards.length === 2 && flippedCards[0] === flippedCards[1]) {
-		const newVal = parseInt($('.count').text()) + 1;
-		$('.count').text(newVal);
+		if (seconds !== 0) {
+			addToCount();
+		};
 		flippedCards.pop();
 		flippedCards.pop();
 		$('.back.flip').addClass('matched');
 		$('.front.flip').addClass('matched');
 		winCount.push('matched');
-		console.log(winCount);
 		winMessage(array);
 	};
 };
 
-// DIFFICULTY
-let switchToHardMode = () => {
-	$('.hardMode').on('click', function(){
-		$('.cards').addClass('hardGrid');
-		if (cardArray.length === 8) {
-			cardArray.push('eevee', 'eevee', 'dratini', 'dratini');
-		}
-		shuffleCards(cardArray);
-		cardFlip(cardArray);
-		winCount = winCount.filter((match) => {
-			if (match !== 'matched') {
-				return true;
-			};
-		});
-	// winMessage(cardArray);
-	});
-};
-
-
-let switchToNormalMode = () => {
-	$('.normalMode').on('click', function(){
-		$('.cards').removeClass('hardGrid');
-		const normalModeArray = cardArray.filter((pokemon) => {
-			if (pokemon !== 'dratini' && pokemon !== 'eevee') {
-				return true;
-			};
-		});
-		shuffleCards(normalModeArray);
-		cardFlip(normalModeArray);
-		winCount = winCount.filter((match) => {
-			if (match !== 'matched') {
-				return true;
-			};
-		winMessage(normalModeArray);
-		});
-	});
-};
-
-// RESET
-$('a').on('click', function (){
-	$('.count').text("0");
-	$('aside').addClass('hidden');
-});
-
-// MENU
-$('i').on('click', function(){
-	$('aside').toggleClass("hidden");
-});
+const addToCount = () => {
+	const newVal = parseInt($('.count').text()) + 1;
+	$('.count').text(newVal);
+}
 
 // WINNING
-let winMessage = (array) => {
+const winMessage = (array) => {
 	let tries = parseInt($('.count').text());
 	let pairs = array.length / 2;
 	setTimeout(function(){
@@ -149,14 +104,88 @@ let winMessage = (array) => {
 	},300);
 };
 
+// DIFFICULTY
+const switchToHardMode = () => {
+	$('.hardMode').on('click', function(){
+		$('.cards').addClass('hardGrid');
+		if (cardArray.length === 8) {
+			cardArray.push('eevee', 'eevee', 'dratini', 'dratini');
+		}
+		shuffleCards(cardArray);
+		cardFlip(cardArray);
+		winCount = winCount.filter((match) => {
+			if (match !== 'matched') {
+				return true;
+			};
+		});
+	});
+};
+
+const switchToNormalMode = () => {
+	$('.normalMode, .normalTimer').on('click', function(){
+		$('.cards').removeClass('hardGrid');
+		const normalModeArray = cardArray.filter((pokemon) => {
+			if (pokemon !== 'dratini' && pokemon !== 'eevee') {
+				return true;
+			};
+		});
+		shuffleCards(normalModeArray);
+		cardFlip(normalModeArray);
+		winCount = winCount.filter((match) => {
+			if (match !== 'matched') {
+				return true;
+			};
+		winMessage(normalModeArray);
+		});
+	});
+};
+
+// TIMER
+
+let seconds = 7;
+
+const setTimer = () => {
+	switchToNormalMode();
+	$('.normalTimer').on('click', function(){
+		let countdown = window.setInterval(function(){
+			$('.timer').text(seconds);
+			seconds--;
+			if (seconds < 0) {
+				window.clearInterval(countdown);
+				$('.front').removeEventListener('click', cardFlip());
+			};
+		}, 1000);
+		// countdown();
+	});
+};
+
+// RESET
+$('a').on('click', function (){
+	$('.count').text("0");
+	$('aside').addClass('hidden');
+	$('.timer').text("");
+	seconds = 7;
+	if (flippedCards.length === 2) {
+		flippedCards.pop();
+		flippedCards.pop();
+	} else if (flippedCards.length === 1) {
+		flippedCards.pop();
+	};
+});
+
+// MENU
+$('i').on('click', function(){
+	$('aside').toggleClass("hidden");
+});
+
 // INIT
-let init = () => {
+const init = () => {
 	shuffleCards(cardArray);
 	cardFlip(cardArray);
 	switchToHardMode();
 	switchToNormalMode();
+	setTimer();
 };
-
 
 // DOCUMENT READY
 $(function() {

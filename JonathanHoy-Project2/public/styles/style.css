@@ -333,12 +333,15 @@ header {
 
 aside {
   width: 300px;
-  height: 80vh;
+  height: 70vh;
   background-color: #D3D3D3;
   border: 5px solid black;
   border-radius: 50px;
   position: absolute;
   left: -50px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
   z-index: 100;
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out; }
