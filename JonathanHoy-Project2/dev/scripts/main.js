@@ -109,18 +109,31 @@ const winMessage = (array) => {
 };
 
 // DIFFICULTY
-
 const difficultyCheck = [];
+
+const setHardMode = () => {
+	if (cardArray.length === 8) {
+		cardArray.push('eevee', 'eevee', 'dratini', 'dratini');
+	}
+	shuffleCards(cardArray);
+	cardFlip(cardArray);
+}
+
+const setNormalMode = () => {
+	const normalModeArray = cardArray.filter((pokemon) => {
+		if (pokemon !== 'dratini' && pokemon !== 'eevee') {
+			return true;
+		};
+	});
+	shuffleCards(normalModeArray);
+	cardFlip(normalModeArray);
+}
 
 const switchToHardMode = () => {
 	$('.hardMode').on('click', function(){
 		difficultyCheck.push('hardMode');
 		$('.cards').addClass('hardGrid');
-		if (cardArray.length === 8) {
-			cardArray.push('eevee', 'eevee', 'dratini', 'dratini');
-		}
-		shuffleCards(cardArray);
-		cardFlip(cardArray);
+		setHardMode();
 		winCount = winCount.filter((match) => {
 			if (match !== 'matched') {
 				return true;
@@ -133,13 +146,7 @@ const switchToNormalMode = () => {
 	$('.normalMode').on('click', function(){
 		difficultyCheck.pop();
 		$('.cards').removeClass('hardGrid');
-		const normalModeArray = cardArray.filter((pokemon) => {
-			if (pokemon !== 'dratini' && pokemon !== 'eevee') {
-				return true;
-			};
-		});
-		shuffleCards(normalModeArray);
-		cardFlip(normalModeArray);
+		setNormalMode();
 		winCount = winCount.filter((match) => {
 			if (match !== 'matched') {
 				return true;
@@ -154,21 +161,21 @@ let normalSeconds = 15;
 let hardSeconds = 30;
 
 const setNormalTimer = () => {
-	const normalModeArray = cardArray.filter((pokemon) => {
-		if (pokemon !== 'dratini' && pokemon !== 'eevee') {
+	setNormalMode();
+	winCount = winCount.filter((match) => {
+		if (match !== 'matched') {
 			return true;
 		};
 	});
-	shuffleCards(normalModeArray);
-	cardFlip(normalModeArray);
 	let countdown = window.setInterval(function(){
 		$('.displayTimer').text(normalSeconds);
 		normalSeconds--;
 		$('a').on('click', function(){
 			window.clearInterval(countdown);
-		})
+		});
 		if (winVerified === 'confirmed') {
 			window.clearInterval(countdown);
+			winMessage(normalModeArray);
 		};
 		if (normalSeconds < 0) {
 			window.clearInterval(countdown);
@@ -186,19 +193,21 @@ $('.normalTimer').on('click', function(){
 })
 
 const setHardTimer = () => {
-	if (cardArray.length === 8) {
-		cardArray.push('eevee', 'eevee', 'dratini', 'dratini');
-	}
-	shuffleCards(cardArray);
-	cardFlip(cardArray);
+	setHardMode();
+	winCount = winCount.filter((match) => {
+		if (match !== 'matched') {
+			return true;
+		};
+	});
 	let countdown = window.setInterval(function(){
 		$('.displayTimer').text(hardSeconds);
 		hardSeconds--;
 		$('a').on('click', function(){
 			window.clearInterval(countdown);
-		})
+		});
 		if (winVerified === 'confirmed') {
 			window.clearInterval(countdown);
+			winMessage(cardArray);
 		};
 		if (hardSeconds < 0) {
 			window.clearInterval(countdown);
