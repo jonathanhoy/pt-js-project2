@@ -31,22 +31,24 @@ const shuffleCards = (array) => {
 // FLIPPING CARDS
 const cardFlip = (array) => {
 	$('.front').on('click', function (){
-		$(this).toggleClass('flip');
-		$(this).next().toggleClass('flip');
-		if ($(this).next().hasClass('bulbasaur')) {
-			flippedCards.push('bulbasaur');
-		} else if ($(this).next().hasClass('charmander')) {
-			flippedCards.push('charmander');
-		} else if ($(this).next().hasClass('squirtle')) {
-			flippedCards.push('squirtle');
-		} else if ($(this).next().hasClass('pikachu')) {
-			flippedCards.push('pikachu');
-		} else if ($(this).next().hasClass('eevee')) {
-			flippedCards.push('eevee');
-		} else if ($(this).next().hasClass('dratini')) {
-			flippedCards.push('dratini');
+		if (!$('.front').hasClass('freeze')) {
+			$(this).toggleClass('flip');
+			$(this).next().toggleClass('flip');
+			if ($(this).next().hasClass('bulbasaur')) {
+				flippedCards.push('bulbasaur');
+			} else if ($(this).next().hasClass('charmander')) {
+				flippedCards.push('charmander');
+			} else if ($(this).next().hasClass('squirtle')) {
+				flippedCards.push('squirtle');
+			} else if ($(this).next().hasClass('pikachu')) {
+				flippedCards.push('pikachu');
+			} else if ($(this).next().hasClass('eevee')) {
+				flippedCards.push('eevee');
+			} else if ($(this).next().hasClass('dratini')) {
+				flippedCards.push('dratini');
+			};
+			compareCards(array);	
 		};
-		compareCards(array);
 	});
 };
 
@@ -77,17 +79,21 @@ const compareCards = (array) => {
 
 const addToCount = () => {
 	const newVal = parseInt($('.count').text()) + 1;
-	$('.count').text(newVal);
+	if (!$('.count').hasClass('freeze')) {
+		$('.count').text(newVal);
+	};
 }
 
 // WINNING
 let winCount = [];
+let winVerified = ''
 
 const winMessage = (array) => {
 	let tries = parseInt($('.count').text());
 	let pairs = array.length / 2;
 	setTimeout(function(){
 		if (winCount.length === (array.length / 2)) {
+			winVerified = 'confirmed'
 			winCount = winCount.filter((match) => {
 				if (match !== 'matched') {
 					return true;
@@ -144,16 +150,29 @@ const switchToNormalMode = () => {
 };
 
 // TIMER
-let normalSeconds = 5;
-let hardSeconds = 45;
+let normalSeconds = 15;
+let hardSeconds = 30;
 
 const setNormalTimer = () => {
+	const normalModeArray = cardArray.filter((pokemon) => {
+		if (pokemon !== 'dratini' && pokemon !== 'eevee') {
+			return true;
+		};
+	});
+	shuffleCards(normalModeArray);
+	cardFlip(normalModeArray);
 	let countdown = window.setInterval(function(){
 		$('.displayTimer').text(normalSeconds);
 		normalSeconds--;
+		$('a').on('click', function(){
+			window.clearInterval(countdown);
+		})
+		if (winVerified === 'confirmed') {
+			window.clearInterval(countdown);
+		};
 		if (normalSeconds < 0) {
 			window.clearInterval(countdown);
-			$('.front').removeEventListener('click', cardFlip());
+			$('.count, .front').addClass('freeze');
 		};
 	}, 1000);
 };
@@ -166,14 +185,44 @@ $('.normalTimer').on('click', function(){
 	};
 })
 
+const setHardTimer = () => {
+	if (cardArray.length === 8) {
+		cardArray.push('eevee', 'eevee', 'dratini', 'dratini');
+	}
+	shuffleCards(cardArray);
+	cardFlip(cardArray);
+	let countdown = window.setInterval(function(){
+		$('.displayTimer').text(hardSeconds);
+		hardSeconds--;
+		$('a').on('click', function(){
+			window.clearInterval(countdown);
+		})
+		if (winVerified === 'confirmed') {
+			window.clearInterval(countdown);
+		};
+		if (hardSeconds < 0) {
+			window.clearInterval(countdown);
+			$('.count, .front').addClass('freeze');
+		};
+	}, 1000);
+};
+
+$('.hardTimer').on('click', function(){
+	if (difficultyCheck[0] !== 'hardMode') {
+		alert('Please select hard difficulty before starting the hard mode timer!');
+	} else {
+		setHardTimer();
+	};
+})
+
 // RESET
 $('a').on('click', function (){
 	$('.count').text("0");
+	$('.count').removeClass('freeze');
 	$('aside').addClass('hidden');
 	$('.displayTimer').text('');
-
-	normalSeconds = 5;
-	hardSeconds = 45;
+	normalSeconds = 15;
+	hardSeconds = 30;
 	if (flippedCards.length === 2) {
 		flippedCards.pop();
 		flippedCards.pop();
