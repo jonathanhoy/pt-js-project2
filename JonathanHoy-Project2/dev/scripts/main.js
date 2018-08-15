@@ -33,17 +33,17 @@ const cardFlip = (array) => {
 	$('.front').on('click', function (){
 		$(this).toggleClass('flip');
 		$(this).next().toggleClass('flip');
-		if ($(this).next().hasClass('bulbasaur') && seconds > 0) {
+		if ($(this).next().hasClass('bulbasaur')) {
 			flippedCards.push('bulbasaur');
-		} else if ($(this).next().hasClass('charmander') && seconds > 0) {
+		} else if ($(this).next().hasClass('charmander')) {
 			flippedCards.push('charmander');
-		} else if ($(this).next().hasClass('squirtle') && seconds > 0) {
+		} else if ($(this).next().hasClass('squirtle')) {
 			flippedCards.push('squirtle');
-		} else if ($(this).next().hasClass('pikachu') && seconds > 0) {
+		} else if ($(this).next().hasClass('pikachu')) {
 			flippedCards.push('pikachu');
-		} else if ($(this).next().hasClass('eevee') && seconds > 0) {
+		} else if ($(this).next().hasClass('eevee')) {
 			flippedCards.push('eevee');
-		} else if ($(this).next().hasClass('dratini') && seconds > 0) {
+		} else if ($(this).next().hasClass('dratini')) {
 			flippedCards.push('dratini');
 		};
 		compareCards(array);
@@ -52,8 +52,6 @@ const cardFlip = (array) => {
 
 // MATCHING LOGIC
 const flippedCards = [];
-
-let winCount = [];
 
 const compareCards = (array) => {
 	if (flippedCards.length === 2 && flippedCards[0] !== flippedCards[1]) {
@@ -67,9 +65,7 @@ const compareCards = (array) => {
 			$('.front').css('pointer-events', 'auto');
 		},750);
 	} else if (flippedCards.length === 2 && flippedCards[0] === flippedCards[1]) {
-		if (seconds !== 0) {
-			addToCount();
-		};
+		addToCount();
 		flippedCards.pop();
 		flippedCards.pop();
 		$('.back.flip').addClass('matched');
@@ -85,6 +81,8 @@ const addToCount = () => {
 }
 
 // WINNING
+let winCount = [];
+
 const winMessage = (array) => {
 	let tries = parseInt($('.count').text());
 	let pairs = array.length / 2;
@@ -105,8 +103,12 @@ const winMessage = (array) => {
 };
 
 // DIFFICULTY
+
+const difficultyCheck = [];
+
 const switchToHardMode = () => {
 	$('.hardMode').on('click', function(){
+		difficultyCheck.push('hardMode');
 		$('.cards').addClass('hardGrid');
 		if (cardArray.length === 8) {
 			cardArray.push('eevee', 'eevee', 'dratini', 'dratini');
@@ -122,7 +124,8 @@ const switchToHardMode = () => {
 };
 
 const switchToNormalMode = () => {
-	$('.normalMode, .normalTimer').on('click', function(){
+	$('.normalMode').on('click', function(){
+		difficultyCheck.pop();
 		$('.cards').removeClass('hardGrid');
 		const normalModeArray = cardArray.filter((pokemon) => {
 			if (pokemon !== 'dratini' && pokemon !== 'eevee') {
@@ -141,30 +144,36 @@ const switchToNormalMode = () => {
 };
 
 // TIMER
+let normalSeconds = 5;
+let hardSeconds = 45;
 
-let seconds = 7;
-
-const setTimer = () => {
-	switchToNormalMode();
-	$('.normalTimer').on('click', function(){
-		let countdown = window.setInterval(function(){
-			$('.timer').text(seconds);
-			seconds--;
-			if (seconds < 0) {
-				window.clearInterval(countdown);
-				$('.front').removeEventListener('click', cardFlip());
-			};
-		}, 1000);
-		// countdown();
-	});
+const setNormalTimer = () => {
+	let countdown = window.setInterval(function(){
+		$('.displayTimer').text(normalSeconds);
+		normalSeconds--;
+		if (normalSeconds < 0) {
+			window.clearInterval(countdown);
+			$('.front').removeEventListener('click', cardFlip());
+		};
+	}, 1000);
 };
+
+$('.normalTimer').on('click', function(){
+	if (difficultyCheck[0] === 'hardMode') {
+		alert('Please select normal difficulty before starting the normal mode timer!');
+	} else {
+		setNormalTimer();
+	};
+})
 
 // RESET
 $('a').on('click', function (){
 	$('.count').text("0");
 	$('aside').addClass('hidden');
-	$('.timer').text("");
-	seconds = 7;
+	$('.displayTimer').text('');
+
+	normalSeconds = 5;
+	hardSeconds = 45;
 	if (flippedCards.length === 2) {
 		flippedCards.pop();
 		flippedCards.pop();
@@ -184,7 +193,6 @@ const init = () => {
 	cardFlip(cardArray);
 	switchToHardMode();
 	switchToNormalMode();
-	setTimer();
 };
 
 // DOCUMENT READY
