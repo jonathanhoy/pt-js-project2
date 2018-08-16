@@ -241,8 +241,13 @@ $('a').on('click', function (){
 });
 
 // MENU
-$('i').on('click', function(){
+$('header i').on('click', function(){
 	$('aside').toggleClass("hidden");
+});
+
+// INSTRUCTIONS
+$('.instructionButton, .instructions i').on('click', function(){
+	$('.instructions').toggleClass('hidden');
 });
 
 // INIT

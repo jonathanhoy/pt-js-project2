@@ -45,7 +45,7 @@ header {
 
 aside {
 	width: 300px;
-	height: 70vh;
+	height: 75vh;
 	background-color: #D3D3D3;
 	border: 5px solid black;
 	border-radius: 50px;
@@ -67,6 +67,9 @@ aside {
 			margin-top: 20px;
 		}
 	}
+	button {
+		padding: 10px;
+	}
 }
 
 .hidden {
@@ -84,6 +87,48 @@ aside {
 section {
 	display: flex;
 	justify-content: space-around;
+}
+
+.instructions {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	margin: 0 auto;
+	background: lightgrey;
+	border: 5px solid black;
+	border-radius: 50px;
+	height: 90vh;
+	width: 90vw;
+	position: fixed;
+	top: 50%;
+	transform: translateY(-50%);
+	left: 0;
+	right: 0;
+	z-index: 200;
+	ol {
+		list-style-position: inside;
+		padding: 0;
+		li {
+			line-height: 50px;
+			text-align: justify;
+		}
+	}
+	i {
+		position: absolute;
+		top: 25px;
+		right: 25px;
+	}
+}
+
+.instructions.hidden {
+	display: none;
+}
+
+
+
+.instructionsWrapper {
+	max-width: 75%;
+	margin: 0 auto;
 }
 
 @media (max-width: 768px) {
@@ -111,5 +156,14 @@ section {
 	}
 	i {
 		font-size: 1.4rem;
+	}
+	.instructions {
+		li {
+			font-size: 1rem;
+			line-height: normal;
+		}
+	}
+	.instructionsWrapper {
+		max-width: 90%;
 	}
 }

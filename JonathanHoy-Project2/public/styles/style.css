@@ -333,7 +333,7 @@ header {
 
 aside {
   width: 300px;
-  height: 70vh;
+  height: 75vh;
   background-color: #D3D3D3;
   border: 5px solid black;
   border-radius: 50px;
@@ -352,6 +352,8 @@ aside {
     padding: 0; }
     aside ul li {
       margin-top: 20px; }
+  aside button {
+    padding: 10px; }
 
 .hidden {
   left: -250px; }
@@ -376,6 +378,48 @@ section {
   -ms-flex-pack: distribute;
       justify-content: space-around; }
 
+.instructions {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 0 auto;
+  background: lightgrey;
+  border: 5px solid black;
+  border-radius: 50px;
+  height: 90vh;
+  width: 90vw;
+  position: fixed;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  left: 0;
+  right: 0;
+  z-index: 200; }
+  .instructions ol {
+    list-style-position: inside;
+    padding: 0; }
+    .instructions ol li {
+      line-height: 50px;
+      text-align: justify; }
+  .instructions i {
+    position: absolute;
+    top: 25px;
+    right: 25px; }
+
+.instructions.hidden {
+  display: none; }
+
+.instructionsWrapper {
+  max-width: 75%;
+  margin: 0 auto; }
+
 @media (max-width: 768px) {
   .hidden {
     left: -300px; } }
@@ -393,4 +437,9 @@ section {
     aside .asideWrapper {
       padding: 20px 50px 20px 55px; }
   i {
-    font-size: 1.4rem; } }
+    font-size: 1.4rem; }
+  .instructions li {
+    font-size: 1rem;
+    line-height: normal; }
+  .instructionsWrapper {
+    max-width: 90%; } }
