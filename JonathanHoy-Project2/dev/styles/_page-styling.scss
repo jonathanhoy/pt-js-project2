@@ -17,12 +17,12 @@ h1, h2, h3 {
 	text-align: center;
 }
 
-li, a, p, span, button, i {
+li, p, span, button, i {
 	font-size: 1.6rem;
 	font-family: 'Nanum Gothic', sans-serif;
 }
 
-a, button {
+button {
 	border: 3px solid black;
 	border-radius: 100px;
 	padding: 5px 15px;
@@ -77,11 +77,11 @@ aside {
 }
 
 .asideWrapper {
-	padding: 50px 50px 50px 55px;
+	padding: 25px 50px 25px 55px;
 	height: 100%;
 	display: flex;
 	flex-direction: column;
-	justify-content: space-around;
+	justify-content: space-between;
 }
 
 section {
@@ -123,8 +123,6 @@ section {
 .instructions.hidden {
 	display: none;
 }
-
-
 
 .instructionsWrapper {
 	max-width: 75%;

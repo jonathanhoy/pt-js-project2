@@ -308,11 +308,11 @@ h1, h2, h3 {
   font-family: 'Roboto', sans-serif;
   text-align: center; }
 
-li, a, p, span, button, i {
+li, p, span, button, i {
   font-size: 1.6rem;
   font-family: 'Nanum Gothic', sans-serif; }
 
-a, button {
+button {
   border: 3px solid black;
   border-radius: 100px;
   padding: 5px 15px;
@@ -359,7 +359,7 @@ aside {
   left: -250px; }
 
 .asideWrapper {
-  padding: 50px 50px 50px 55px;
+  padding: 25px 50px 25px 55px;
   height: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -368,8 +368,9 @@ aside {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -ms-flex-pack: distribute;
-      justify-content: space-around; }
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between; }
 
 section {
   display: -webkit-box;

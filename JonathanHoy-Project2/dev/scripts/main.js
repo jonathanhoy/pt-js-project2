@@ -170,7 +170,7 @@ const setNormalTimer = () => {
 	let countdown = window.setInterval(function(){
 		$('.displayTimer').text(normalSeconds);
 		normalSeconds--;
-		$('a').on('click', function(){
+		$('button').on('click', function(){
 			window.clearInterval(countdown);
 		});
 		if (winVerified === 'confirmed') {
@@ -202,7 +202,7 @@ const setHardTimer = () => {
 	let countdown = window.setInterval(function(){
 		$('.displayTimer').text(hardSeconds);
 		hardSeconds--;
-		$('a').on('click', function(){
+		$('button').on('click', function(){
 			window.clearInterval(countdown);
 		});
 		if (winVerified === 'confirmed') {
@@ -225,7 +225,7 @@ $('.hardTimer').on('click', function(){
 })
 
 // RESET
-$('a').on('click', function (){
+$('.difficultyButtons button, .timerButton button').on('click', function (){
 	$('.count').text("0");
 	$('.count').removeClass('freeze');
 	$('aside').addClass('hidden');
