@@ -63,6 +63,7 @@ aside {
 	ul {
 		list-style: none;
 		padding: 0;
+		margin: 0;
 		li {
 			margin-top: 20px;
 		}
@@ -106,8 +107,6 @@ section {
 	right: 0;
 	z-index: 200;
 	ol {
-		list-style-position: inside;
-		padding: 0;
 		li {
 			line-height: 50px;
 			text-align: justify;
@@ -133,6 +132,13 @@ section {
 	.hidden {
 		left: -300px;
 	}
+	.instructionsWrapper {
+		max-width: 95%;
+	}
+	.instructions li {
+		font-size: 1.4rem;
+		line-height: normal;
+	}
 }
 
 @media (max-width: 425px) {
@@ -156,6 +162,9 @@ section {
 		font-size: 1.4rem;
 	}
 	.instructions {
+		ol {
+			padding-left: 10px;
+		}
 		li {
 			font-size: 1rem;
 			line-height: normal;
