@@ -22,7 +22,7 @@ const shuffleCards = (array) => {
 	let shuffledCardArray = shuffle(array);
 	let shuffledCardList = '';
 	for (let i = 0; i < shuffledCardArray.length; i++) {
-		shuffledCardList += `<li class="card"><div class="card"><div class="front"></div><div class="back ${shuffledCardArray[i]}"><img src="dev/assets/${shuffledCardArray[i]}.png" alt="A cute picture of ${shuffledCardArray[i]}."></div></div></li>`;
+		shuffledCardList += `<li class="card"><div class="card"><div class="front"></div><div class="back ${shuffledCardArray[i]}"><img src="public/assets/${shuffledCardArray[i]}.png" alt="A cute picture of ${shuffledCardArray[i]}."></div></div></li>`;
 	};
 	$('.cards').html(shuffledCardList);
 	console.log(shuffledCardArray); // to cheat and see the cards
